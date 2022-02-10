@@ -1,7 +1,13 @@
-const res = require("express/lib/response");
 const News = require("../models/NewsModel");
 
-const postNews = async(req, res) => {
+const viewNews = async(req,res) => {
+    const data = await News.find()
+    res.json({
+        data
+    })
+}
+
+const addNews = async(req, res) => {
     console.log( req.body)
     const {title, description, important} = req.body
     const news = await new News({
@@ -25,10 +31,21 @@ const postNews = async(req, res) => {
             news,
         },
     ])
-    
+
     res.status(200).send("se hizo el post")
 }
 
+const updateNews = async (req,res) => {
+    console.log('entro',req.body)
+    // const userId = req.params.id
+    const user = await News.find({_id: req.params.id})
+
+    res.send(user)
+
+}
+
 module.exports = {
-    postNews
+    addNews,
+    viewNews,
+    updateNews
 }
