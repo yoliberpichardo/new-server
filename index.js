@@ -10,6 +10,8 @@ app.use(express.json());
 app.use("/api", require("./src/routes/newsRoute"))
 app.use("/post", require("./src/routes/newsRoute"))
 app.use("/put", require("./src/routes/newsRoute"))
+app.use("/delete", require("./src/routes/newsRoute"))
+
 
 
 app.listen(PORT,() =>{
